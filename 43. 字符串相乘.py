@@ -42,7 +42,7 @@ class Solution:
         
         if len1 < 0 or len2 < 0:
             return ""
-        if len1 ==0 or len2 ==0:
+        if len1 == 0 or len2 == 0:
             return str(int(num1) * int(num2))
         mul = [0 for _ in range(len1 + len2 + 2)]
         
@@ -50,9 +50,10 @@ class Solution:
             for j in range(len2,-1,-1):
                 bitmul = int(num1[i]) * int(num2[j])
                 bitmul += mul[i+j+1] #先加低位 判断是否有新的进位
-                mul[i+j] = bitmul // 10
+                mul[i+j] += bitmul // 10   #注意有个加号
                 mul[i+j+1] = bitmul % 10
         res = []
+    
         flag = False
         for i in range(len(mul)):
             if mul[i] == 0 and not flag:
@@ -60,8 +61,11 @@ class Solution:
             else:
                 flag = True
                 res.append(str(mul[i]))
-        print(res)
+        
         return ''.join(res)
+        
+        
+        
         
         
         
